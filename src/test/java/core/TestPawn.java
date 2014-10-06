@@ -75,14 +75,30 @@ public class TestPawn {
     @Test
     public void test_movement() throws OutOfBoardException{
         assertNotNull(pawn);
+
+        //Four direction
         Direction dirDown = Direction.Down;
+        Direction dirUp = Direction.Up;
+        Direction dirRight = Direction.Right;
+        Direction dirLeft = Direction.Left;
 
 
-        when(board.getXSize()).thenReturn(posX);
-        when(board.getYSize()).thenReturn(posY);
+        when(board.getXSize()).thenReturn(6);
+        when(board.getYSize()).thenReturn(6);
 
         pawn.move(dirDown);
+        assertEquals(pawn.getX(), posX);
+        assertEquals(pawn.getY(), posY-1);
 
+        pawn.move(dirUp);
+        assertEquals(pawn.getX(), posX);
+        assertEquals(pawn.getY(), posY);
+
+        pawn.move(dirRight);
+        assertEquals(pawn.getX(), posX+1);
+        assertEquals(pawn.getY(), posY);
+
+        pawn.move(dirLeft);
         assertEquals(pawn.getX(), posX);
         assertEquals(pawn.getY(), posY);
     }
