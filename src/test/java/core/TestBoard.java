@@ -28,6 +28,14 @@ public class TestBoard {
     private Pawn currentPawn;
     private int nbPlayer;
 
+    //Default parameters
+    private final int numberOfPawns = 2;
+
+    private void createPawn(){
+        //ArrayList<Pawn> listpawns = new ArrayList<Pawn>();
+
+
+    }
     @Before
     public void setUp(){
 
@@ -45,6 +53,23 @@ public class TestBoard {
         when(pawns.get(0).getY()).thenReturn(2);
         assertEquals('a',board.getSquareContent(2,2).getLetter());
 
+    }
+
+    @Test
+    public void testRemovePawn(){
+        assertNotNull(board);
+
+        assertEquals(numberOfPawns, board.numberOfPawns());
+        currentPawn = new Pawn('d', 4,4, board);
+        pawns.add(currentPawn);
+
+        assertEquals(numberOfPawns, board.numberOfPawns()+1);
+        Pawn pawn = new Pawn('f', 2,2,board);
+        pawns.add(pawn);
+        assertEquals(numberOfPawns, board.numberOfPawns()+2);
+        
+        board.removePawn(currentPawn);
+        assertEquals(numberOfPawns, board.numberOfPawns()+1);
     }
 
 }
