@@ -78,4 +78,9 @@ public class TestBoard {
         assertEquals(numberOfPawns, board.numberOfPawns()+1);
     }
 
+    @Test
+    public void testIsBonusSquare(){
+
+    }
+
 }
