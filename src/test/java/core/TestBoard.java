@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class TestBoard {
 
     @Mock
-    private ArrayList<Pawn> pawns = new ArrayList<Pawn>();
+    private ArrayList<Pawn> pawns;
 
     private Board board;
 
@@ -26,7 +26,7 @@ public class TestBoard {
     private int xBonusSquare;
     private int yBonusSquare;
     private Pawn currentPawn;
-    private int nbPlayer;
+    private int nbPlayer = 2;
 
     //Default parameters
     private final int numberOfPawns = 2;
@@ -40,6 +40,7 @@ public class TestBoard {
     public void setUp(){
 
         board = new Board(2,6,6,5,5);
+        pawns = new ArrayList<Pawn>();
         for(int i=0; i<nbPlayer; i++){
             pawns.add(mock(Pawn.class));
         }
@@ -51,7 +52,12 @@ public class TestBoard {
         when(pawns.get(0).getLetter()).thenReturn('a');
         when(pawns.get(0).getX()).thenReturn(2);
         when(pawns.get(0).getY()).thenReturn(2);
-        assertEquals('a',board.getSquareContent(2,2).getLetter());
+        if(board.getSquareContent(2,2)!=null){
+            assertEquals('a',board.getSquareContent(2,2).getLetter());
+        }else{
+            fail();
+        }
+
 
     }
 
