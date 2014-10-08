@@ -26,11 +26,11 @@ public class TestPawn {
     private Board board;
 
     private Pawn pawn;
-
+    private Pawn pawn2;
 
     //Default parameters Pawn
-    private int posY = 4;
     private int posX = 4;
+    private int posY = 4;
     private int gold = 0;
     private char letter = 'm';
     private boolean isDead = false;
@@ -40,6 +40,9 @@ public class TestPawn {
     public void init() {
         board = mock(Board.class);
         pawn = new Pawn(letter, posX, posY, board);
+        pawn2  = new Pawn('l', 5,4, board);
+        board.addPawn(pawn);
+        board.addPawn(pawn2);
     }
 
     @Test
@@ -101,6 +104,12 @@ public class TestPawn {
         pawn.move(dirLeft);
         assertEquals(pawn.getX(), posX);
         assertEquals(pawn.getY(), posY);
+
+        System.out.println(board.numberOfPawns());
+
+
+
+
     }
 
 }

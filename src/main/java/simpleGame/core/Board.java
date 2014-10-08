@@ -25,17 +25,17 @@ public class Board {
     /**
      * The Pawns that currently are on the board.
      */
-    private ArrayList<Pawn> pawns;
+    private final ArrayList<Pawn> pawns;
 
     /**
      * The x position of the bonus square
      */
-    private int xBonusSquare;
+    private final int xBonusSquare;
 
     /**
      * the y position of the bonus square
      */
-    private int yBonusSquare;
+    private final int yBonusSquare;
 
     /**
      * An iterator pointing towards the current pawn that must play.
@@ -61,15 +61,16 @@ public class Board {
      * @param sizeX The number of squares on the x axis.
      * @param sizeY The number of squares on the y axis.
      */
-    public Board(int numberOfPawns, int sizeX, int sizeY, int xBonus, int yBonus) {
-        Random random = new Random();
+    public Board(int numberOfPawns, int sizeX, int sizeY, final int xBonus, final int yBonus) {
+        final Random random = new Random();
         this.xSize = sizeX;
         this.ySize = sizeY;
         this.xBonusSquare = xBonus;
         this.yBonusSquare = yBonus;
         this.pawns = new ArrayList<Pawn>();
+        Pawn pawn;
         for(int i = 0; i<numberOfPawns; i++) {
-            Pawn pawn = new Pawn(Character.forDigit(i, 10),
+             pawn = new Pawn(Character.forDigit(i, 10),
                                  random.nextInt(xSize),random.nextInt(ySize),this);
             this.addPawn(pawn);
         }
@@ -83,7 +84,7 @@ public class Board {
      * @param y The y axis value.
      * @return The pawn found, or null if no pawn.
      */
-    public Pawn getSquareContent(int x, int y) {
+    public Pawn getSquareContent(final int x, final int y) {
         for (Pawn p : pawns) {
             if ((p.getX() == x) &&(p.getY() == y)) {
                 return p;
@@ -96,7 +97,7 @@ public class Board {
      * Removes a pawn from the board.
      * @param pawn The pawn to remove.
      */
-    public void removePawn(Pawn pawn) {
+    public void removePawn(final Pawn pawn) {
         pawns.remove(pawn);
     }
 
@@ -104,7 +105,7 @@ public class Board {
      * Adds a pawn to the board.
      * @param pawn The pawn to add.
      */
-    public void addPawn(Pawn pawn) {
+    public void addPawn(final Pawn pawn) {
         if (getSquareContent(pawn.getX(),
                              pawn.getY()) == null)
             this.pawns.add(pawn);
@@ -116,7 +117,7 @@ public class Board {
      * @param y The y axis value.
      * @return True if the square is bonus, false otherwise.
      */
-    public boolean isBonusSquare(int x, int y) {
+    public boolean isBonusSquare(final int x, final int y) {
         return x==xBonusSquare && y==yBonusSquare;
     }
 
@@ -135,7 +136,7 @@ public class Board {
      */
     public int maxGold() {
         int max = 0;
-        for (Pawn p : pawns) {
+        for (final Pawn p : pawns) {
             max = Math.max(max, p.getGold());
         }
         return max;
@@ -151,7 +152,7 @@ public class Board {
             return pawns.get(0);
         }
         else {
-            Pawn result = currentPawn;
+            final Pawn result = currentPawn;
             currentPawn = this.pawns.get((this.pawns.indexOf(
                                               currentPawn)+1)%this.pawns.size());
             return result;
@@ -164,9 +165,9 @@ public class Board {
      * @param y The y axis value.
      * @return # if bonus, . if empty, c if current Pawn, a number for a non-current Pawn
      */
-    public char squareContentSprite(int x, int y) {
+    public char squareContentSprite(final int x, final int y) {
         char result;
-        Pawn content = getSquareContent(x,y);
+        final Pawn content = getSquareContent(x,y);
         if (content == null) {
             if (isBonusSquare(x, y)) {
                 result = '#';
