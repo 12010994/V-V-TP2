@@ -15,12 +15,12 @@ public class Board {
     /**
      * The number of squares on the x axis.
      */
-    private int xSize;
+    private final int xSize;
 
     /**
      * The number of squares on the y axis.
      */
-    private int ySize;
+    private final int ySize;
 
     /**
      * The Pawns that currently are on the board.
