@@ -26,7 +26,6 @@ public class TestPawn {
     private Board board;
 
     private Pawn pawn;
-    private Pawn pawn2;
 
     //Default parameters Pawn
     private int posX = 4;
@@ -40,9 +39,7 @@ public class TestPawn {
     public void init() {
         board = mock(Board.class);
         pawn = new Pawn(letter, posX, posY, board);
-        pawn2  = new Pawn('l', 5,4, board);
         board.addPawn(pawn);
-        board.addPawn(pawn2);
     }
 
     @Test
@@ -104,10 +101,6 @@ public class TestPawn {
         pawn.move(dirLeft);
         assertEquals(pawn.getX(), posX);
         assertEquals(pawn.getY(), posY);
-
-        System.out.println(board.numberOfPawns());
-
-
 
 
     }

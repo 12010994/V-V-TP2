@@ -8,7 +8,10 @@ import java.util.Random;
  * It is of rectangular shape, and is made of squares.
  * One of the square is a "bonus" square: it allows pawns to be stronger.
  * @author Erwan Bousse
- *
+ * Pawn pawn1 = new Pawn('l', 5,4, board);
+        Pawn pawn2 = new Pawn('m', 2,4, board);
+        board.addPawn(pawn1);
+        board.addPawn(pawn2);
  */
 public class Board {
 
@@ -61,7 +64,7 @@ public class Board {
      * @param sizeX The number of squares on the x axis.
      * @param sizeY The number of squares on the y axis.
      */
-    public Board(int numberOfPawns, int sizeX, int sizeY, final int xBonus, final int yBonus) {
+    public Board(final int numberOfPawns, final int sizeX, final int sizeY, final int xBonus, final int yBonus) {
         final Random random = new Random();
         this.xSize = sizeX;
         this.ySize = sizeY;
@@ -174,7 +177,7 @@ public class Board {
             } else
                 result = '.';
         } else {
-            if (content == currentPawn) {
+            if (content.equals(currentPawn)) {
                 result = 'c';
             } else
                 result = content.getLetter();
