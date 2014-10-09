@@ -99,24 +99,17 @@ public class Pawn {
             newx++ ;
             break;
         }
-        System.out.println("newx " + newx);
-        System.out.println("newy " + newy);
-
-        System.out.println("taille Y : "+ board.getYSize());
         if 	(newy <= board.getYSize()
                 && newx <= board.getXSize()
                 && newy > 0
                 && newx > 0)
         {
-            System.out.println("avant getsquare");
             Pawn content = board.getSquareContent(newx,newy);
-            System.out.println("content " +content);
             if (content == null) {
                 x = newx;
                 y = newy;
             }
             else {
-                    System.out.println("entré else");
                 message = this.attack(content);
             }
         } else {
