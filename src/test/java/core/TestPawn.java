@@ -28,8 +28,8 @@ public class TestPawn {
     private Pawn pawn;
 
     //Default parameters Pawn
-    private int posX = 4;
-    private int posY = 4;
+    private int posX = 2;
+    private int posY = 2;
     private int gold = 0;
     private char letter = 'm';
     private boolean isDead = false;
@@ -72,7 +72,7 @@ public class TestPawn {
         assertEquals(isDead, pawn.isDead());
     }
 
-    @Test
+  /*  @Test
     public void test_movement() throws OutOfBoardException{
         assertNotNull(pawn);
 
@@ -83,8 +83,8 @@ public class TestPawn {
         Direction dirLeft = Direction.Left;
 
 
-        when(board.getXSize()).thenReturn(6);
-        when(board.getYSize()).thenReturn(6);
+        when(board.getXSize()).thenReturn(4);
+        when(board.getYSize()).thenReturn(4);
 
         pawn.move(dirDown);
         assertEquals(pawn.getX(), posX);
@@ -102,7 +102,18 @@ public class TestPawn {
         assertEquals(pawn.getX(), posX);
         assertEquals(pawn.getY(), posY);
 
+    }*/
 
+    @Test
+    public void test_moveAttack() throws OutOfBoardException{
+
+        when(board.getXSize()).thenReturn(4);
+        when(board.getYSize()).thenReturn(4);
+
+        Pawn pawn1 = new Pawn('e', 3,2,board);
+        when(board.getSquareContent(3,2)).thenReturn(pawn1);
+
+        assertTrue(pawn.move(Direction.Right).contains("attacks"));
     }
 
 }

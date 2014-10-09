@@ -36,7 +36,7 @@ public class TestSequenceDiagram {
     }
 
     @InjectMocks
-    private Board board = new Board(2, 6, 6, 2, 2);
+    private Board board = new Board(2, 4, 4, 4, 4);
 
     @Mock
     private ArrayList<Pawn> pawns;
@@ -54,22 +54,26 @@ public class TestSequenceDiagram {
 
     @Test
     public void test_numberOfPawns(){
+
         when(pawns.size()).thenReturn(2);
         assertEquals(board.numberOfPawns(),2);
         verify(pawns).size();
     }
 
     @Test
-    public void test_maxGold(){
+    public void test_maxGold() {
 
-        ArrayList<Pawn> pawnslist = new ArrayList<Pawn>();
+        ArrayList<Pawn> pawns = new ArrayList<Pawn>();
 
-        pawnslist.add(pawn0);
-        pawnslist.add(pawn1);
+        pawns.add(pawn0);
+        pawns.add(pawn1);
 
+        board = new Board(2, 4, 4, 4, 4);
 
         when(pawn0.getGold()).thenReturn(1);
         when(pawn1.getGold()).thenReturn(3);
+
+        //System.out.println(board.maxGold());
 
         assertEquals(board.maxGold(), 3);
 
@@ -77,6 +81,7 @@ public class TestSequenceDiagram {
         verify(pawn1).getGold();
 
     }
+
 
 
 

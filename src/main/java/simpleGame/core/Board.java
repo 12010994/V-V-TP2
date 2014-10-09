@@ -190,7 +190,6 @@ public class Board {
      */
     public String toString() {
         String result = "";
-//TODO
         /* for (int y= ySize-1; y>=0; y--) {
             for(int x = 0; x<xSize; x++) {*/
         for (int y= ySize; y>0; y--) {

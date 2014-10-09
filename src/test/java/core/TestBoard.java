@@ -140,6 +140,7 @@ public class TestBoard {
         public void test_getNextPawn(){
             assertNotNull(board);
 
+            board = new Board(2, xSize, ySize, xBonusSquare, yBonusSquare);
             ArrayList<Pawn> pawns = getAllPawn(board);
 
             for (int i = 0; i < pawns.size(); i++) {
