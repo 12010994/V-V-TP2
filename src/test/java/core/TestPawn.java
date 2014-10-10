@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 
+import org.mockito.stubbing.OngoingStubbing;
 import simpleGame.core.Board;
 import simpleGame.core.Direction;
 import simpleGame.core.Pawn;
@@ -72,7 +73,7 @@ public class TestPawn {
         assertEquals(isDead, pawn.isDead());
     }
 
-  /*  @Test
+    @Test
     public void test_movement() throws OutOfBoardException{
         assertNotNull(pawn);
 
@@ -102,7 +103,7 @@ public class TestPawn {
         assertEquals(pawn.getX(), posX);
         assertEquals(pawn.getY(), posY);
 
-    }*/
+    }
 
     @Test
     public void test_moveAttack() throws OutOfBoardException{
@@ -116,4 +117,21 @@ public class TestPawn {
         assertTrue(pawn.move(Direction.Right).contains("attacks"));
     }
 
+  /*  @Test
+    public void test_moveAttackBonus() throws OutOfBoardException{
+
+        when(board.getXSize()).thenReturn(4);
+        when(board.getYSize()).thenReturn(4);
+        when(board.isBonusSquare(4, 4)).thenReturn(true);
+
+        pawn = new Pawn(letter, 3, 4, board);
+        board.addPawn(pawn);
+        Pawn pawn1 = new Pawn('e', 4,4,board);
+        when(board.getSquareContent(4,4)).thenReturn(pawn1);
+
+        //System.out.println("bonnus testpawn " + board.isBonusSquare(4, 4));
+        //System.out.println(pawn.move(Direction.Right));
+        assertTrue(pawn.move(Direction.Right).contains("attacks"));
+    }
+*/
 }

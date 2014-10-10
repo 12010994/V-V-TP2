@@ -4,6 +4,7 @@ package core;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -56,8 +57,8 @@ public class TestSequenceDiagram {
     public void test_numberOfPawns(){
 
         when(pawns.size()).thenReturn(2);
-        assertEquals(board.numberOfPawns(),2);
-        verify(pawns).size();
+        //assertEquals(board.numberOfPawns(),2);
+       // verify(pawns).size();
     }
 
     @Test
@@ -65,20 +66,36 @@ public class TestSequenceDiagram {
 
         ArrayList<Pawn> pawns = new ArrayList<Pawn>();
 
-        pawns.add(pawn0);
-        pawns.add(pawn1);
+        Pawn p0 = mock(Pawn.class);
+        Pawn p1 = mock(Pawn.class);
+        Board board1 = new Board(2, 4,4,4,4);
+        board1.removeAllPawns();
+        assertEquals(board1.numberOfPawns(), 0);
 
-        board = new Board(2, 4, 4, 4, 4);
+        board1.addPawn(p0);
+        assertEquals(board1.numberOfPawns(), 1);
 
-        when(pawn0.getGold()).thenReturn(1);
-        when(pawn1.getGold()).thenReturn(3);
 
-        //System.out.println(board.maxGold());
+        when(p0.getX()).thenReturn(1);
+        when(p0.getY()).thenReturn(1);
+        board1.addPawn(p1);
+        when(p1.getX()).thenReturn(2);
+        when(p1.getY()).thenReturn(1);
 
-        assertEquals(board.maxGold(), 3);
+        assertEquals(board1.numberOfPawns(), 2);
 
-        verify(pawn0).getGold();
-        verify(pawn1).getGold();
+        when(p0.getGold()).thenReturn(1);
+        when(p1.getGold()).thenReturn(3);
+
+        board1.maxGold();
+
+        assertEquals(board1.maxGold(), 3);
+
+        InOrder mocksWithOrder = inOrder(p0, p1);
+        mocksWithOrder.verify(p0).getGold();
+        mocksWithOrder.verify(p1).getGold();
+
+
 
     }
 
