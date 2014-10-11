@@ -129,7 +129,6 @@ public class Pawn {
      */
     private String attack(Pawn enemy) {
         String message=this.letter + " attacks!\n";
-        //System.out.println("if : "+this.board.isBonusSquare(x,y));
         if (this.board.isBonusSquare(x, y))
             message+=enemy.suffer(2);
         else

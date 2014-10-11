@@ -120,9 +120,7 @@ public class Board {
      * @param y The y axis value.
      * @return True if the square is bonus, false otherwise.
      */
-    public boolean isBonusSquare(final int x, final int y) {
-        return x==xBonusSquare && y==yBonusSquare;
-    }
+    public boolean isBonusSquare(final int x, final int y) {return x==xBonusSquare && y==yBonusSquare;}
 
 
     /**

@@ -62,125 +62,125 @@ public class TestBoard {
         assertEquals(ySize, board.getYSize());
     }
 
-        @Test
-        public void testGetSquareContent() {
-            board.removeAllPawns();
-            Pawn pawn1 = new Pawn('a', 2, 2, board);
-            board.addPawn(pawn1);
-            if (board.getSquareContent(2, 2) != null) {
-                assertEquals('a', board.getSquareContent(2, 2).getLetter());
-            } else {
-                fail();
+    @Test
+    public void testGetSquareContent() {
+        board.removeAllPawns();
+        Pawn pawn1 = new Pawn('a', 2, 2, board);
+        board.addPawn(pawn1);
+        if (board.getSquareContent(2, 2) != null) {
+            assertEquals('a', board.getSquareContent(2, 2).getLetter());
+        } else {
+            fail();
+        }
+
+    }
+
+    @Test
+    public void test_numberOfPawns() {
+        assertNotNull(board);
+
+        assertEquals(numberOfPawns, board.numberOfPawns());
+    }
+
+    @Test
+    public void test_addPawn() {
+        assertNotNull(board);
+
+        assertEquals(numberOfPawns, board.numberOfPawns());
+
+        Pawn pawn1 = new Pawn('l', 3, 4, board);
+        board.addPawn(pawn1);
+        assertEquals(numberOfPawns + 1, board.numberOfPawns());
+    }
+
+    @Test
+    public void test_isBonusSquare(){
+        assertNotNull(board);
+
+        assertFalse(board.isBonusSquare(2,2));
+        assertTrue(board.isBonusSquare(4,4));
+    }
+
+    @Test
+    public void test_removePawn(){
+        assertNotNull(board);
+        board.removeAllPawns();
+        numberOfPawns=0;
+
+        assertEquals(numberOfPawns, board.numberOfPawns());
+        Pawn pawn1 = new Pawn('l', 3,4, board);
+        Pawn pawn2 = new Pawn('m', 2,3, board);
+
+        board.addPawn(pawn1);
+        assertEquals(numberOfPawns + 1, board.numberOfPawns());
+
+        board.addPawn(pawn2);
+        assertEquals(numberOfPawns +2, board.numberOfPawns());
+
+        board.removePawn(pawn2);
+        assertEquals(numberOfPawns+2-1, board.numberOfPawns());
+
+    }
+
+    @Test
+    public void test_maxGold(){
+        assertNotNull(board);
+
+        assertEquals(board.maxGold(), 0);
+
+        int maxGold = 3;
+
+        Pawn pawn = mock(Pawn.class);
+        when(pawn.getGold()).thenReturn(maxGold);
+        board.addPawn(pawn);
+        assertEquals(maxGold, board.maxGold());
+
+    }
+
+    @Test
+    public void test_getNextPawn(){
+        assertNotNull(board);
+
+        board = new Board(2, xSize, ySize, xBonusSquare, yBonusSquare);
+        ArrayList<Pawn> pawns = getAllPawn(board);
+
+        for (int i = 0; i < pawns.size(); i++) {
+            assertNotNull(pawns.get(i));
+        }
+
+        for (int i = 0; i < pawns.size() - 1; i++) {
+            for (int j = i + 1; j < pawns.size(); j++) {
+                assertNotSame(pawns.get(i), pawns.get(j));
             }
-
         }
 
-        @Test
-        public void test_numberOfPawns() {
-            assertNotNull(board);
+    }
 
-            assertEquals(numberOfPawns, board.numberOfPawns());
-        }
+    @Test
+    public void test_squareContentSprite(){
+        assertNotNull(board);
 
-        @Test
-        public void test_addPawn() {
-            assertNotNull(board);
+        ArrayList<Pawn> pawns = getAllPawn(board);
 
-            assertEquals(numberOfPawns, board.numberOfPawns());
+        //if current Pawn
+        assertEquals(board.squareContentSprite(pawns.get(0).getX(), pawns.get(0).getY()), 'c');
 
-            Pawn pawn1 = new Pawn('l', 3, 4, board);
-            board.addPawn(pawn1);
-            assertEquals(numberOfPawns + 1, board.numberOfPawns());
-        }
+        board.removeAllPawns();
+        numberOfPawns=0;
 
-        @Test
-        public void test_isBonusSquare(){
-            assertNotNull(board);
+        Pawn pawn1 = new Pawn('l', 3,4, board);
+        board.addPawn(pawn1);
 
-            assertFalse(board.isBonusSquare(2,2));
-            assertTrue(board.isBonusSquare(4,4));
-        }
+        //a number for a non-current Pawn
+        assertEquals(board.squareContentSprite(3, 4), 'l');
 
-        @Test
-        public void test_removePawn(){
-            assertNotNull(board);
-            board.removeAllPawns();
-            numberOfPawns=0;
+        //if bonus
+        assertEquals(board.squareContentSprite(4, 4), '#');
 
-            assertEquals(numberOfPawns, board.numberOfPawns());
-            Pawn pawn1 = new Pawn('l', 3,4, board);
-            Pawn pawn2 = new Pawn('m', 2,3, board);
+        //if empty
+        assertEquals(board.squareContentSprite(1,3), '.');
 
-            board.addPawn(pawn1);
-            assertEquals(numberOfPawns + 1, board.numberOfPawns());
-
-            board.addPawn(pawn2);
-            assertEquals(numberOfPawns +2, board.numberOfPawns());
-
-            board.removePawn(pawn2);
-            assertEquals(numberOfPawns+2-1, board.numberOfPawns());
-
-        }
-
-        @Test
-        public void test_maxGold(){
-            assertNotNull(board);
-
-            assertEquals(board.maxGold(), 0);
-
-            int maxGold = 3;
-
-            Pawn pawn = mock(Pawn.class);
-            when(pawn.getGold()).thenReturn(maxGold);
-            board.addPawn(pawn);
-            assertEquals(maxGold, board.maxGold());
-
-        }
-
-        @Test
-        public void test_getNextPawn(){
-            assertNotNull(board);
-
-            board = new Board(2, xSize, ySize, xBonusSquare, yBonusSquare);
-            ArrayList<Pawn> pawns = getAllPawn(board);
-
-            for (int i = 0; i < pawns.size(); i++) {
-                assertNotNull(pawns.get(i));
-            }
-
-            for (int i = 0; i < pawns.size() - 1; i++) {
-                for (int j = i + 1; j < pawns.size(); j++) {
-                    assertNotSame(pawns.get(i), pawns.get(j));
-                }
-            }
-
-        }
-
-        @Test
-        public void test_squareContentSprite(){
-            assertNotNull(board);
-
-            ArrayList<Pawn> pawns = getAllPawn(board);
-
-            //if current Pawn
-            assertEquals(board.squareContentSprite(pawns.get(0).getX(), pawns.get(0).getY()), 'c');
-
-            board.removeAllPawns();
-            numberOfPawns=0;
-
-            Pawn pawn1 = new Pawn('l', 3,4, board);
-            board.addPawn(pawn1);
-
-            //a number for a non-current Pawn
-            assertEquals(board.squareContentSprite(3, 4), 'l');
-
-            //if bonus
-            assertEquals(board.squareContentSprite(4, 4), '#');
-
-            //if empty
-            assertEquals(board.squareContentSprite(1,3), '.');
-
-        }
+    }
 
     @Test
     public void test_toString(){
@@ -211,27 +211,18 @@ public class TestBoard {
 
 
     }
-/*
+
     @Test
-    public void test_movement(){
-        assertNotNull(board);
+    public void test_moveAttackBonus() throws OutOfBoardException{
+        board.removeAllPawns();
 
 
-        Pawn pawn1 = new Pawn('l', 5,4, board);
-        Pawn pawn2 = new Pawn('m', 5,5, board);
-
-
-        board.addPawn(pawn1);
+        Pawn pawn2 = new Pawn('f', 3, 4, board);
         board.addPawn(pawn2);
+        Pawn pawn1 = new Pawn('e', 4,4,board);
+        board.addPawn(pawn1);
 
-        //System.out.println(board.toString());
-
-        try {
-            pawn1.move(Direction.Down);
-        } catch (OutOfBoardException e) {
-            e.printStackTrace();
-        }
+        assertTrue(pawn1.move(Direction.Left).contains("attacks"));
     }
-*/
 
 }
