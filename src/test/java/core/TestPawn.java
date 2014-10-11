@@ -117,29 +117,5 @@ public class TestPawn {
         assertTrue(pawn.move(Direction.Right).contains("attacks"));
     }
 
-    @Test
-    public void test_moveAttackBonus() throws OutOfBoardException{
-
-        when(board.getXSize()).thenReturn(4);
-        when(board.getYSize()).thenReturn(4);
-
-
-        int i, y=1;
-        for (i = 1; i<board.getXSize(); i++) {
-            for (y=1; y < board.getYSize(); y++) {
-
-                if (board.squareContentSprite(i, y) == '#'){
-                    break;
-                }
-            }
-        }
-        System.out.println(i +"  " + y);
-        board.squareContentSprite(i,y);
-
-        pawn = new Pawn(letter, 3, 4, board);
-        board.addPawn(pawn);
-        Pawn pawn1 = new Pawn('e', 4,4,board);
-        when(board.getSquareContent(4,4)).thenReturn(pawn1);
-
 
 }
