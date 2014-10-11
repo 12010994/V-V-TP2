@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import simpleGame.core.Board;
 import simpleGame.core.Direction;
+import simpleGame.core.Game;
 import simpleGame.core.Pawn;
 import simpleGame.exception.OutOfBoardException;
 
@@ -207,6 +208,7 @@ public class TestBoard {
 
         board.removeAllPawns();
         assertEquals(board.numberOfPawns(), 0);
+
 
     }
 /*
