@@ -6,16 +6,13 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import simpleGame.core.Board;
 import simpleGame.core.Direction;
-import simpleGame.core.Game;
 import simpleGame.core.Pawn;
 import simpleGame.exception.OutOfBoardException;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TestBoard {

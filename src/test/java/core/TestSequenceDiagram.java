@@ -16,12 +16,12 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 
 @RunWith(MockitoJUnitRunner.class)
 public class TestSequenceDiagram {
-
 
     @InjectMocks
     private Board board = new Board(2, 4, 4, 4, 4);
@@ -35,10 +35,16 @@ public class TestSequenceDiagram {
     @Mock
     private Pawn pawn1;
 
+
+
     @Before
     public void init(){
         MockitoAnnotations.initMocks(this);
     }
+
+
+
+
 
     @Test
     public void test_numberOfPawns(){
@@ -84,5 +90,6 @@ public class TestSequenceDiagram {
         mocksWithOrder.verify(p1).getGold();
 
     }
+
 
 }
