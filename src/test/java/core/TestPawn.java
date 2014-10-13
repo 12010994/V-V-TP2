@@ -117,5 +117,15 @@ public class TestPawn {
         assertTrue(pawn.move(Direction.Right).contains("attacks"));
     }
 
+    @Test (expected = OutOfBoardException.class)
+    public void test_moveException() throws OutOfBoardException{
+
+        when(board.getXSize()).thenReturn(2);
+        when(board.getYSize()).thenReturn(2);
+
+        pawn.move(Direction.Right);
+
+    }
+
 
 }
